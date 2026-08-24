@@ -169,6 +169,13 @@
   a.fpr { color: var(--green-dark); text-decoration: none; font-weight: 600; border-bottom: 1px dashed var(--green-mid); }
   a.fpr:hover { border-bottom-style: solid; color: var(--green); }
 
+  .eq-tldr { font-size: 12.5px; color: var(--text-secondary); background: var(--bg); border-radius: 8px; padding: 9px 12px; margin-bottom: 12px; line-height: 1.5; }
+  .eq-tldr b { color: var(--text); }
+  .qa-refs { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .fpr-chip { font-family: var(--mono); font-size: 10px; color: var(--green-dark); background: var(--green-light);
+    border: 1px solid var(--green-mid); border-radius: 10px; padding: 1px 7px; text-decoration: none; }
+  .fpr-chip:hover { background: var(--green-mid); }
+
   /* INSIGHT */
   .insight { padding: 13px 16px; border-radius: 10px; background: var(--amber-light); border: 1px solid #f6dba8; font-size: 12.5px; color: var(--amber-dark); line-height: 1.6; display: flex; gap: 10px; }
   .insight-icon { flex-shrink: 0; }
@@ -192,6 +199,7 @@
     <span class="badge">Mid Q · Q3 2026</span>
     <h1>Iniciativas producto — Q3 2026</h1>
     <p class="subtitle">Generado el 21 de agosto de 2026<span class="sep">·</span>Q3: 6 de julio — 27 de septiembre</p>
+    <p class="foot-note">Solo Issue Type = Iniciativa (sin discoveries) · sin BI/BIAF · fuente: export Jira 21/08/2026</p>
     <nav class="quicknav">
       <a class="qn-link" href="#resumen">Resumen</a>
       <a class="qn-link" href="#meses">Cierre por mes</a>
@@ -388,62 +396,184 @@
 
     <div class="eq-block t-oyo">
       <div class="eq-block-header"><span class="team-dot" style="background:var(--oyo)"></span><span class="eq-block-name">OYO</span></div>
+      <p class="eq-tldr"><b>En resumen:</b> el principal factor reportado fue una diferencia entre el esfuerzo estimado y el real en varias iniciativas.</p>
       <div class="qa-grid">
-        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a empty">-</div></div>
-        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a">Estimaciones "tardó 2X" en 5 casos (<a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1972" target="_blank" rel="noopener">FPR-1972</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1977" target="_blank" rel="noopener">FPR-1977</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1978" target="_blank" rel="noopener">FPR-1978</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1980" target="_blank" rel="noopener">FPR-1980</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1984" target="_blank" rel="noopener">FPR-1984</a>)</div></div>
-        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2009" target="_blank" rel="noopener">FPR-2009</a> y <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2010" target="_blank" rel="noopener">FPR-2010</a> movidas a Q4 (bloqueadas por BSS)</div></div>
-        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1950" target="_blank" rel="noopener">FPR-1950</a> (post-Mundial) consumió capacity y retrasó subidas. Volumen del stream: 39 bugs creados / 198 historias cerradas (ratio 0.20) — concentrado en el squad MOYO (31 de los 39).</div></div>
+        <div class="qa-item">
+          <div class="qa-q">🆕 Nuevo</div>
+          <div class="qa-a empty">-</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🎯 No previmos</div>
+          <div class="qa-a">En 5 iniciativas el equipo subestimó el esfuerzo: calcularon la mitad de lo que terminó tardando cada una.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1972" target="_blank" rel="noopener">FPR-1972</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1977" target="_blank" rel="noopener">FPR-1977</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1978" target="_blank" rel="noopener">FPR-1978</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1980" target="_blank" rel="noopener">FPR-1980</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1984" target="_blank" rel="noopener">FPR-1984</a>
+          </div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">✂️ Repriorizamos</div>
+          <div class="qa-a">Dos iniciativas quedaron bloqueadas por una dependencia con BSS y se movieron directamente a Q4.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2009" target="_blank" rel="noopener">FPR-2009</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2010" target="_blank" rel="noopener">FPR-2010</a>
+          </div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🐛 Bugs</div>
+          <div class="qa-a">Una tanda de bugs post-Mundial en una de las iniciativas le comió capacidad al equipo y retrasó las subidas a producción. A nivel de todo el stream: 39 bugs creados sobre 198 historias cerradas, concentrados sobre todo en el squad MOYO.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1950" target="_blank" rel="noopener">FPR-1950</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="eq-block t-cat">
       <div class="eq-block-header"><span class="team-dot" style="background:var(--cyc)"></span><span class="eq-block-name">Catálogo y Contenidos</span></div>
+      <p class="eq-tldr"><b>En resumen:</b> los factores reportados son una dependencia de Backend identificada más tarde de lo previsto y la curva de aprendizaje de una metodología nueva. Es también el stream con mayor volumen de bugs de regresión del Q.</p>
       <div class="qa-grid">
-        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a">Dependencia BE detectada tarde en agenda deportiva (<a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2025" target="_blank" rel="noopener">FPR-2025</a>)</div></div>
-        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a">Curva de aprendizaje por incorporación de KIRO + nueva metodología</div></div>
-        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a">DIP Legión (<a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2024" target="_blank" rel="noopener">FPR-2024</a>) rescopeado a "maqueta no productiva" — deja de ser entrega real</div></div>
-        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a">Volumen del stream: 43 bugs creados / 236 historias cerradas (ratio 0.18) — 50 de esos bugs son de regresión, la mayor concentración de los 4 streams con data.</div></div>
+        <div class="qa-item">
+          <div class="qa-q">🆕 Nuevo</div>
+          <div class="qa-a">Apareció una dependencia con Backend en la iniciativa de agenda deportiva que no estaba contemplada, y todavía no tiene fecha de resolución.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2025" target="_blank" rel="noopener">FPR-2025</a>
+          </div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🎯 No previmos</div>
+          <div class="qa-a">La incorporación de una nueva metodología de trabajo (KIRO) generó una curva de aprendizaje que impactó los tiempos.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">✂️ Repriorizamos</div>
+          <div class="qa-a">El nuevo DIP para Smart TV/Android TV se recortó a una maqueta no productiva — deja de ser una entrega real este Q.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2024" target="_blank" rel="noopener">FPR-2024</a>
+          </div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🐛 Bugs</div>
+          <div class="qa-a">Es el stream con más regresión del Q: de los ~64 bugs de regresión detectados entre todos los streams con data, 50 salieron de acá — sobre 43 bugs creados y 236 historias cerradas.</div>
+        </div>
       </div>
     </div>
 
     <div class="eq-block t-dispo">
       <div class="eq-block-header"><span class="team-dot" style="background:var(--dispo)"></span><span class="eq-block-name">Dispositivos</span></div>
+      <p class="eq-tldr"><b>En resumen:</b> los factores reportados son bugs de un proveedor externo (Skyworth) y la prioridad asignada a otro proyecto (TMA), que redujeron la capacidad disponible.</p>
       <div class="qa-grid">
-        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a empty">-</div></div>
-        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a">Bugs en plataforma Skyworth, requieren coordinación con proveedor</div></div>
-        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a">Escenarios de prueba achicados para priorizar principales</div></div>
-        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a">Bugs Skyworth extendieron <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1997" target="_blank" rel="noopener">FPR-1997</a>; priorización TMA redujo capacity. Sin data de volumen de bugs a nivel squad para este stream.</div></div>
+        <div class="qa-item">
+          <div class="qa-q">🆕 Nuevo</div>
+          <div class="qa-a empty">-</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🎯 No previmos</div>
+          <div class="qa-a">Bugs en la nueva versión de la plataforma de los decos Skyworth, que requieren coordinación directa con el proveedor.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">✂️ Repriorizamos</div>
+          <div class="qa-a">Se achicaron los escenarios de prueba para priorizar los más importantes y no perder más tiempo en homologación.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🐛 Bugs</div>
+          <div class="qa-a">Los bugs de Skyworth extendieron una de las iniciativas, y la prioridad puesta en TMA le quitó capacidad al resto. Todavía no tenemos el volumen de bugs a nivel de squad para este stream.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1997" target="_blank" rel="noopener">FPR-1997</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="eq-block t-pb">
       <div class="eq-block-header"><span class="team-dot" style="background:var(--pb)"></span><span class="eq-block-name">Playback</span></div>
+      <p class="eq-tldr"><b>En resumen:</b> concentra la iniciativa con mayor desvío del Q (82 días), explicada por una cadena de demoras vinculadas al Mundial y un bug que no pudo detectarse antes por falta de ambientes de testing disponibles.</p>
       <div class="qa-grid">
-        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a>: bug post-despliegue no detectado a tiempo por ambientes ocupados. <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1850" target="_blank" rel="noopener">FPR-1850</a>: dependencia con desarrollos de proveedores (Arris/Sagem) forzó recorte de alcance</div></div>
-        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2039" target="_blank" rel="noopener">FPR-2039</a>: dependencia con otros equipos no contemplada + extensión del plan de despliegue CDN</div></div>
-        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2039" target="_blank" rel="noopener">FPR-2039</a> se baja del todo; <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2042" target="_blank" rel="noopener">FPR-2042</a> se baja por capacidad; alcance redefinido en <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1850" target="_blank" rel="noopener">FPR-1850</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2033" target="_blank" rel="noopener">FPR-2033</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2037" target="_blank" rel="noopener">FPR-2037</a>; <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2034" target="_blank" rel="noopener">FPR-2034</a> en revisión por capacidad</div></div>
-        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a>: los 82 días de desvío son consecuencia directa de un bug post-Mundial no detectado a tiempo — causa raíz más clara que en el resto de los equipos. Volumen del stream: 26 bugs creados / 199 historias cerradas (ratio 0.13) — el squad PLBATV en 0.42, 4 a 14x sus squads hermanos.</div></div>
+        <div class="qa-item">
+          <div class="qa-q">🆕 Nuevo</div>
+          <div class="qa-a">El despliegue se atrasó primero por el Mundial y después por el propio despliegue post-Mundial; una vez resuelto eso, apareció un bug que no se pudo detectar antes porque los ambientes de testing estaban ocupados. Por separado, una dependencia con desarrollos de proveedores (Arris y Sagem) obligó a recortar el alcance de otra iniciativa.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1850" target="_blank" rel="noopener">FPR-1850</a>
+          </div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🎯 No previmos</div>
+          <div class="qa-a">Una dependencia con otros equipos que no estaba contemplada, sumada a que el plan de despliegue de CDN se extendió más de lo pensado.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2039" target="_blank" rel="noopener">FPR-2039</a>
+          </div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">✂️ Repriorizamos</div>
+          <div class="qa-a">Una iniciativa se dio de baja por completo, otra se bajó por capacidad, y otras tres redefinieron su alcance.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2039" target="_blank" rel="noopener">FPR-2039</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2042" target="_blank" rel="noopener">FPR-2042</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1850" target="_blank" rel="noopener">FPR-1850</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2033" target="_blank" rel="noopener">FPR-2033</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2037" target="_blank" rel="noopener">FPR-2037</a>
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2034" target="_blank" rel="noopener">FPR-2034</a>
+          </div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🐛 Bugs</div>
+          <div class="qa-a">Es la causa raíz más clara de todo el reporte: ese bug post-despliegue explica los 82 días de atraso de la iniciativa. A nivel de todo el stream hay proporcionalmente menos bugs que en el resto (26 sobre 199 historias), aunque el squad ATV concentra bastante más que sus pares.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a>
+          </div>
+        </div>
       </div>
-      <p class="eq-note">⚠️ <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1944" target="_blank" rel="noopener">FPR-1944</a> — 19 días de atraso y ya lleva <strong>3 replanificaciones</strong>. Patrón de riesgo aparte de <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a>, no es solo un atraso puntual.</p>
+      <p class="eq-note">⚠️ <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1944" target="_blank" rel="noopener">FPR-1944</a> — 19 días de atraso y ya lleva <strong>3 replanificaciones</strong>. Patrón de riesgo aparte del bug de arriba, no es solo un atraso puntual.</p>
     </div>
 
     <div class="eq-block t-core">
       <div class="eq-block-header"><span class="team-dot" style="background:var(--core)"></span><span class="eq-block-name">Core</span></div>
+      <p class="eq-tldr"><b>En resumen:</b> se identificó un ticket que agrupa el trabajo no planificado propio de un equipo de servicio y soporte.</p>
       <div class="qa-grid">
-        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a empty">-</div></div>
-        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a">Por la naturaleza de Core (sector de servicio y soporte), surgen varias cosas no planificadas — se están consolidando en <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2083" target="_blank" rel="noopener">FPR-2083</a> (creación de perfiles, adecuación para contenido no contratado, Tendencias web, entre otras).</div></div>
-        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a empty">-</div></div>
-        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a empty">-</div></div>
+        <div class="qa-item">
+          <div class="qa-q">🆕 Nuevo</div>
+          <div class="qa-a empty">-</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🎯 No previmos</div>
+          <div class="qa-a">Por ser un equipo de servicio y soporte, les surgen tareas no planificadas todo el tiempo (creación de perfiles, adecuación de contenido no contratado, Tendencias web, entre otras) — las están agrupando en un solo ticket para poder medirlas.</div>
+          <div class="qa-refs">
+            <a class="fpr-chip" href="https://tecocloud.atlassian.net/browse/FPR-2083" target="_blank" rel="noopener">FPR-2083</a>
+          </div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">✂️ Repriorizamos</div>
+          <div class="qa-a empty">-</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🐛 Bugs</div>
+          <div class="qa-a empty">-</div>
+        </div>
       </div>
     </div>
 
     <div class="eq-block t-host">
       <div class="eq-block-header"><span class="team-dot" style="background:var(--host)"></span><span class="eq-block-name">Host</span></div>
+      <p class="eq-tldr"><b>En resumen:</b> el factor reportado son bugs de un trabajo cerrado el Q pasado (splash en ATV) que se identificaron durante el rollout progresivo de este Q.</p>
       <div class="qa-grid">
-        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a">Bugs del refactor de splash en ATV (cerrado el Q pasado) que se fueron encontrando durante las salidas progresivas</div></div>
-        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a empty">-</div></div>
-        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a">Nada — no hay iniciativas bajadas</div></div>
-        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a">Los bugs del refactor de splash ATV atrasaron un poco el avance. Volumen del stream: 14 bugs creados / 84 historias cerradas (ratio 0.17).</div></div>
+        <div class="qa-item">
+          <div class="qa-q">🆕 Nuevo</div>
+          <div class="qa-a">Durante el Q fueron apareciendo bugs de un refactor de splash en ATV que ya se había cerrado el trimestre anterior — se fueron descubriendo a medida que la salida se desplegaba de a poco.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🎯 No previmos</div>
+          <div class="qa-a empty">-</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">✂️ Repriorizamos</div>
+          <div class="qa-a">Nada — no bajaron ninguna iniciativa.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">🐛 Bugs</div>
+          <div class="qa-a">Esos mismos bugs del refactor de splash le restaron ritmo al equipo. A nivel de stream: 14 bugs creados sobre 84 historias cerradas.</div>
+        </div>
       </div>
     </div>
   </section>
