@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flow — Mid Q Q3 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1D9E75;
+    --green-light: #e8f7f2;
+    --green-mid: #c2eadc;
+    --green-dark: #157a5a;
+    --bg: #f7f8fa;
+    --white: #ffffff;
+    --border: #e4e7ec;
+    --text: #1a1f2e;
+    --text-secondary: #4b5563;
+    --text-muted: #9ca3af;
+    --cyc: #EF9F27;
+    --dispo: #378ADD;
+    --pb: #1D9E75;
+    --oyo: #D4537E;
+    --core: #7F77DD;
+    --host: #888780;
+    --red: #A32D2D;
+    --red-light: #FCEBEB;
+    --amber-light: #FEF3E2;
+    --amber-dark: #92400E;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(16,24,40,0.06), 0 1px 2px rgba(16,24,40,0.04);
+    --radius: 12px;
+    --mono: 'DM Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; }
+
+  /* HEADER */
+  header { background: var(--white); border-bottom: 1px solid var(--border); padding: 44px 24px 28px; }
+  .header-inner { max-width: 900px; margin: 0 auto; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green-dark);
+    font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 4px 12px;
+    border-radius: 20px; margin-bottom: 16px; border: 1px solid var(--green-mid); }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; line-height: 1.2; }
+  .subtitle { color: var(--text-secondary); font-size: 14px; margin-bottom: 4px; }
+  .subtitle .sep { color: var(--text-muted); margin: 0 6px; }
+  .foot-note { color: var(--text-muted); font-size: 12px; font-style: italic; margin-top: 6px; }
+
+  /* QUICK NAV */
+  .quicknav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .qn-link { font-family: var(--mono); font-size: 11px; color: var(--text-secondary); background: var(--bg);
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; text-decoration: none; transition: all .15s; }
+  .qn-link:hover { border-color: var(--green); color: var(--green-dark); background: var(--green-light); }
+
+  main { max-width: 900px; margin: 0 auto; padding: 40px 24px 90px; }
+  section { margin-bottom: 52px; scroll-margin-top: 20px; }
+
+  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .section-num { width: 26px; height: 26px; border-radius: 7px; background: var(--green); color: white;
+    font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--mono); }
+  h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-sub { color: var(--text-muted); font-size: 12.5px; margin: 6px 0 18px 36px; line-height: 1.55; }
+
+  /* KPI STRIP */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .kpi { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px;
+    box-shadow: var(--shadow-sm); border-top: 3px solid var(--border); }
+  .kpi.k-total { border-top-color: var(--text-muted); }
+  .kpi.k-done { border-top-color: var(--green); }
+  .kpi.k-ip { border-top-color: var(--dispo); }
+  .kpi.k-pend { border-top-color: var(--red); }
+  .kpi-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+  .kpi-value { font-family: var(--mono); font-size: 26px; font-weight: 500; letter-spacing: -0.01em; }
+  .kpi.k-done .kpi-value { color: var(--green-dark); }
+  .kpi.k-ip .kpi-value { color: var(--dispo); }
+  .kpi-sub { font-size: 11px; color: var(--text-muted); margin-top: 5px; }
+
+  /* SEMAFORO */
+  .semaforo-bar { display: flex; border-radius: 10px; overflow: hidden; height: 34px; margin-top: 18px; box-shadow: var(--shadow-sm); }
+  .sem-seg { display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 11px; font-weight: 500; color: #fff; }
+  .sem-done { background: var(--green); }
+  .sem-ip { background: var(--dispo); }
+  .sem-pend { background: #d1d5db; color: #4b5563; }
+  .sem-block { background: var(--red); }
+  .sem-legend { display: flex; gap: 18px; margin-top: 10px; flex-wrap: wrap; }
+  .sem-leg-item { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--text-secondary); }
+  .sem-leg-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+  /* MES CARDS */
+  .dist-mes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+  .mes-card { border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: var(--radius);
+    padding: 14px 16px; background: var(--white); box-shadow: var(--shadow-sm); }
+  .mes-card.closed { border-left-color: var(--text); }
+  .mes-card.active { border-left-color: var(--dispo); }
+  .mes-card.future { border-left-color: var(--border); }
+  .mes-label { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .mes-range { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: .03em; }
+  .mes-count { font-family: var(--mono); font-size: 22px; font-weight: 500; margin-bottom: 8px; }
+  .mes-count span { font-family: 'Inter'; font-size: 12px; font-weight: 400; color: var(--text-muted); }
+  .mes-progress { height: 5px; background: var(--bg); border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+  .mes-progress-fill { height: 5px; border-radius: 3px; }
+  .mes-badge { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 3px 9px; border-radius: 20px; }
+  .badge-ok { background: var(--green-light); color: var(--green-dark); }
+  .badge-warn { background: var(--amber-light); color: var(--amber-dark); }
+  .badge-bad { background: var(--red-light); color: var(--red); }
+  .badge-pend { background: var(--bg); color: var(--text-muted); }
+
+  /* DETAILS / COLLAPSIBLE */
+  .mes-details { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; background: var(--white); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .mes-details summary { list-style: none; cursor: pointer; padding: 13px 18px; font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; gap: 10px; }
+  .mes-details summary::-webkit-details-marker { display: none; }
+  .mes-details summary .chevron { margin-left: auto; font-size: 12px; color: var(--text-muted); transition: transform .15s; font-family: var(--mono); }
+  .mes-details[open] summary .chevron { transform: rotate(90deg); }
+  .mes-details summary .mes-summary-sub { font-size: 11.5px; font-weight: 400; color: var(--text-muted); font-family: var(--mono); }
+  .mes-details .mes-details-body { padding: 0 18px 18px; border-top: 1px solid var(--border); padding-top: 14px; }
+
+  /* TABLE */
+  .table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .table th { font-size: 10.5px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .03em;
+    text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  .table td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .table tr:last-child td { border-bottom: none; }
+  .table td.num, .table th.num { text-align: center; font-family: var(--mono); }
+  .team-row { display: flex; align-items: center; gap: 8px; }
+  .team-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .pill { display: inline-block; font-family: var(--mono); font-size: 10.5px; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+  .pill-green { background: var(--green-light); color: var(--green-dark); }
+  .pill-blue { background: #e6f1fb; color: #185fa5; }
+  .pill-amber { background: var(--amber-light); color: var(--amber-dark); }
+  .pill-gray { background: var(--bg); color: var(--text-muted); }
+  .pill-red { background: var(--red-light); color: var(--red); }
+
+  /* CALLOUT / ALERTS */
+  .callout { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 10px; margin-bottom: 8px; border: 1px solid transparent; }
+  .callout.danger { background: var(--red-light); border-color: #f3c6c6; }
+  .callout.warning { background: var(--amber-light); border-color: #f6dba8; }
+  .callout-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+  .callout-body { flex: 1; }
+  .callout-key { font-family: var(--mono); font-size: 11px; font-weight: 700; margin-bottom: 2px; }
+  .callout.danger .callout-key { color: var(--red); }
+  .callout.warning .callout-key { color: var(--amber-dark); }
+  .callout-text { font-size: 12.5px; line-height: 1.5; color: var(--text-secondary); }
+  .callout.danger .callout-text strong { color: var(--red); }
+  .callout.warning .callout-text strong { color: var(--amber-dark); }
+
+  /* QUALI EQ BLOCKS */
+  .eq-block { border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: var(--radius);
+    padding: 18px 20px; margin-bottom: 12px; background: var(--white); box-shadow: var(--shadow-sm); }
+  .eq-block.t-core { border-left-color: var(--core); }
+  .eq-block.t-oyo { border-left-color: var(--oyo); }
+  .eq-block.t-cat { border-left-color: var(--cyc); }
+  .eq-block.t-dispo { border-left-color: var(--dispo); }
+  .eq-block.t-pb { border-left-color: var(--pb); }
+  .eq-block.t-host { border-left-color: var(--host); }
+  .eq-block-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .eq-block-name { font-size: 14.5px; font-weight: 700; }
+  .qa-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .qa-item { background: var(--bg); border-radius: 8px; padding: 10px 12px; }
+  .qa-q { font-size: 9.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+  .qa-a { font-size: 12.5px; color: var(--text); line-height: 1.5; }
+  .qa-a.empty { color: #c3c8d1; font-style: italic; }
+  .eq-note { font-size: 12px; color: var(--amber-dark); background: var(--amber-light); border-radius: 8px; padding: 9px 12px; margin-top: 10px; }
+
+  a.fpr { color: var(--green-dark); text-decoration: none; font-weight: 600; border-bottom: 1px dashed var(--green-mid); }
+  a.fpr:hover { border-bottom-style: solid; color: var(--green); }
+
+  /* INSIGHT */
+  .insight { padding: 13px 16px; border-radius: 10px; background: var(--amber-light); border: 1px solid #f6dba8; font-size: 12.5px; color: var(--amber-dark); line-height: 1.6; display: flex; gap: 10px; }
+  .insight-icon { flex-shrink: 0; }
+
+  .stream-name { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+
+  @media (max-width: 640px) {
+    header { padding: 32px 18px 22px; }
+    main { padding: 28px 18px 70px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .dist-mes { grid-template-columns: 1fr; }
+    .qa-grid { grid-template-columns: 1fr; }
+    .section-sub { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="badge">Mid Q · Q3 2026</span>
+    <h1>Iniciativas producto — Q3 2026</h1>
+    <p class="subtitle">Generado el 21 de agosto de 2026<span class="sep">·</span>Q3: 6 de julio — 27 de septiembre</p>
+    <p class="foot-note">Solo Issue Type = Iniciativa (sin discoveries) · sin BI/BIAF · fuente: export Jira 21/08/2026</p>
+    <nav class="quicknav">
+      <a class="qn-link" href="#resumen">Resumen</a>
+      <a class="qn-link" href="#meses">Cierre por mes</a>
+      <a class="qn-link" href="#alertas">Alertas</a>
+      <a class="qn-link" href="#quali">Quali por equipo</a>
+      <a class="qn-link" href="#prioridad">Prioridad</a>
+      <a class="qn-link" href="#bugs">Bugs</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="resumen">
+    <div class="section-header"><span class="section-num">01</span><h2>Estado general</h2></div>
+    <div class="kpi-grid">
+      <div class="kpi k-total">
+        <div class="kpi-label">Comprometidas</div>
+        <div class="kpi-value">90</div>
+        <div class="kpi-sub">6 equipos, sin BI</div>
+      </div>
+      <div class="kpi k-done">
+        <div class="kpi-label">Done</div>
+        <div class="kpi-value">10</div>
+        <div class="kpi-sub">11% de cumplimiento</div>
+      </div>
+      <div class="kpi k-ip">
+        <div class="kpi-label">En progreso</div>
+        <div class="kpi-value">44</div>
+        <div class="kpi-sub">49% del total</div>
+      </div>
+      <div class="kpi k-pend">
+        <div class="kpi-label">Sin iniciar / blocked</div>
+        <div class="kpi-value">36</div>
+        <div class="kpi-sub">34 sin iniciar · 2 blocked</div>
+      </div>
+    </div>
+
+    <div class="semaforo-bar">
+      <div class="sem-seg sem-done" style="flex:10">10</div>
+      <div class="sem-seg sem-ip" style="flex:44">44</div>
+      <div class="sem-seg sem-pend" style="flex:34">34</div>
+      <div class="sem-seg sem-block" style="flex:2">2</div>
+    </div>
+    <div class="sem-legend">
+      <div class="sem-leg-item"><span class="sem-leg-dot" style="background:var(--green)"></span>Done</div>
+      <div class="sem-leg-item"><span class="sem-leg-dot" style="background:var(--dispo)"></span>En progreso</div>
+      <div class="sem-leg-item"><span class="sem-leg-dot" style="background:#d1d5db"></span>Sin iniciar</div>
+      <div class="sem-leg-item"><span class="sem-leg-dot" style="background:var(--red)"></span>Blocked</div>
+    </div>
+  </section>
+
+  <section id="meses">
+    <div class="section-header"><span class="section-num">02</span><h2>Cierre real por mes — cortes oficiales del Q</h2></div>
+    <p class="section-sub">Mes 1 (Julio) cerró el 02/08. Mes 2 (Agosto) cierra el 30/08, quedan 9 días. Mes 3 (Septiembre) cierra el 27/09.</p>
+
+    <div class="dist-mes">
+      <div class="mes-card closed">
+        <p class="mes-label">Mes 1 — Julio</p>
+        <p class="mes-range">Cerró 02/08</p>
+        <p class="mes-count">11 <span>comprometidas</span></p>
+        <div class="mes-progress"><div class="mes-progress-fill" style="width:45%;background:var(--amber-dark)"></div></div>
+        <span class="mes-badge badge-warn">5/11 done · 45%</span>
+      </div>
+      <div class="mes-card active">
+        <p class="mes-label">Mes 2 — Agosto</p>
+        <p class="mes-range">Cierra 30/08 · en curso</p>
+        <p class="mes-count">20 <span>comprometidas</span></p>
+        <div class="mes-progress"><div class="mes-progress-fill" style="width:10%;background:var(--dispo)"></div></div>
+        <span class="mes-badge badge-warn">2/20 done · 10%</span>
+      </div>
+      <div class="mes-card future">
+        <p class="mes-label">Mes 3 — Septiembre</p>
+        <p class="mes-range">Cierra 27/09</p>
+        <p class="mes-count">59 <span>comprometidas</span></p>
+        <div class="mes-progress"><div class="mes-progress-fill" style="width:5%;background:var(--text-muted)"></div></div>
+        <span class="mes-badge badge-pend">3 done adelantadas</span>
+      </div>
+    </div>
+
+    <p class="section-sub" style="margin-top:20px">Detalle por equipo, mes a mes:</p>
+
+    <details class="mes-details">
+      <summary>Mes 1 — Julio <span class="chevron">▸</span><span class="mes-summary-sub">&nbsp;· cerró 02/08 · 5/11 done · 45%</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr>
+            <th>Equipo</th><th class="num">Comprometidas M1</th><th class="num">Done</th><th class="num">% cierre real</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--core)"></span>Core</span></td><td class="num">1</td><td class="num">1</td><td class="num"><span class="pill pill-green">100%</span></td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span>OYO</span></td><td class="num">2</td><td class="num">1</td><td class="num"><span class="pill pill-amber">50%</span></td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--cyc)"></span>Catálogo y Contenidos</span></td><td class="num">4</td><td class="num">2</td><td class="num"><span class="pill pill-amber">50%</span></td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--pb)"></span>Playback</span></td><td class="num">3</td><td class="num">1</td><td class="num"><span class="pill pill-amber">33%</span></td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--host)"></span>Host</span></td><td class="num">1</td><td class="num">0</td><td class="num"><span class="pill pill-red">0%</span></td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Dispositivos</span></td><td class="num">0</td><td class="num">—</td><td class="num"><span class="pill pill-gray">sin compromisos M1</span></td></tr>
+          </tbody>
+        </table>
+        <p class="section-sub" style="margin:12px 0 0">Core muestra 100% sobre 1 sola ficha — el grueso de su volumen (9/11) vence recién en M3.</p>
+      </div>
+    </details>
+
+    <details class="mes-details">
+      <summary>Mes 2 — Agosto <span class="chevron">▸</span><span class="mes-summary-sub">&nbsp;· cierra 30/08 · en curso · 2/20 done</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr>
+            <th>Equipo</th><th class="num">Comprometidas M2</th><th class="num">Done a hoy</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Dispositivos</span></td><td class="num">7</td><td class="num">1</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--cyc)"></span>Catálogo y Contenidos</span></td><td class="num">4</td><td class="num">1</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span>OYO</span></td><td class="num">4</td><td class="num">0</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--host)"></span>Host</span></td><td class="num">2</td><td class="num">0</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--pb)"></span>Playback</span></td><td class="num">3</td><td class="num">0</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--core)"></span>Core</span></td><td class="num">0</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="mes-details">
+      <summary>Mes 3 — Septiembre <span class="chevron">▸</span><span class="mes-summary-sub">&nbsp;· cierra 27/09 · 3/59 done adelantadas</span></summary>
+      <div class="mes-details-body">
+        <table class="table">
+          <thead><tr>
+            <th>Equipo</th><th class="num">Comprometidas M3</th><th class="num">Done a hoy</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--pb)"></span>Playback</span></td><td class="num">13</td><td class="num">0</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--oyo)"></span>OYO</span></td><td class="num">13</td><td class="num">1</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--dispo)"></span>Dispositivos</span></td><td class="num">12</td><td class="num">0</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--core)"></span>Core</span></td><td class="num">10</td><td class="num">2</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--cyc)"></span>Catálogo y Contenidos</span></td><td class="num">8</td><td class="num">0</td></tr>
+            <tr><td><span class="team-row"><span class="team-dot" style="background:var(--host)"></span>Host</span></td><td class="num">3</td><td class="num">0</td></tr>
+          </tbody>
+        </table>
+        <p class="section-sub" style="margin:12px 0 0">Todavía falta más de un mes para el cierre — los "done a hoy" son adelantos, no atraso.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="alertas">
+    <div class="section-header"><span class="section-num">03</span><h2>Alertas — vencidas sin cerrar</h2></div>
+    <p class="section-sub">Baseline end date ya pasado y sin status Done.</p>
+
+    <div class="callout danger">
+      <span class="callout-icon">🔴</span>
+      <div class="callout-body">
+        <div class="callout-key"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a></div>
+        <div class="callout-text"><strong>Playback</strong> — Rediseño home Tendencias (Web). Vencía 31/05. <strong>82 días de atraso.</strong></div>
+      </div>
+    </div>
+    <div class="callout danger">
+      <span class="callout-icon">🔴</span>
+      <div class="callout-body">
+        <div class="callout-key"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1950" target="_blank" rel="noopener">FPR-1950</a></div>
+        <div class="callout-text"><strong>OYO</strong> — Refresco compra packs ATV. Vencía 26/06. <strong>56 días de atraso.</strong></div>
+      </div>
+    </div>
+    <div class="callout warning">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body">
+        <div class="callout-key"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1975" target="_blank" rel="noopener">FPR-1975</a></div>
+        <div class="callout-text"><strong>Host</strong> — Encuesta CES Android TV/STB. Vencía 02/08. 19 días de atraso.</div>
+      </div>
+    </div>
+    <div class="callout warning">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body">
+        <div class="callout-key"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2025" target="_blank" rel="noopener">FPR-2025</a></div>
+        <div class="callout-text"><strong>Catálogo</strong> — XP Deportes, features Mundial fútbol argentino. Vencía 02/08. Blocked por dependencia BE, se destraba la semana que viene.</div>
+      </div>
+    </div>
+    <div class="callout warning">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body">
+        <div class="callout-key"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2023" target="_blank" rel="noopener">FPR-2023</a></div>
+        <div class="callout-text"><strong>Catálogo</strong> — Reminders, estabilización. Vencía 02/08. 19 días de atraso.</div>
+      </div>
+    </div>
+    <div class="callout warning">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body">
+        <div class="callout-key"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1944" target="_blank" rel="noopener">FPR-1944</a></div>
+        <div class="callout-text"><strong>Playback</strong> — Chromecast senders Android fase 2. Vencía 02/08. 19 días de atraso y <strong>3 replanificaciones</strong> — patrón de riesgo aparte del atraso puntual.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quali">
+    <div class="section-header"><span class="section-num">04</span><h2>Quali por equipo — 4 preguntas</h2></div>
+    <p class="section-sub">Qué apareció nuevo · Qué no previmos · Qué repriorizamos/soltamos · Cómo nos afectan los bugs</p>
+
+    <div class="eq-block t-oyo">
+      <div class="eq-block-header"><span class="team-dot" style="background:var(--oyo)"></span><span class="eq-block-name">OYO</span></div>
+      <div class="qa-grid">
+        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a empty">-</div></div>
+        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a">Estimaciones "tardó 2X" en 5 casos (<a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1972" target="_blank" rel="noopener">FPR-1972</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1977" target="_blank" rel="noopener">FPR-1977</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1978" target="_blank" rel="noopener">FPR-1978</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1980" target="_blank" rel="noopener">FPR-1980</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1984" target="_blank" rel="noopener">FPR-1984</a>)</div></div>
+        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2009" target="_blank" rel="noopener">FPR-2009</a> y <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2010" target="_blank" rel="noopener">FPR-2010</a> movidas a Q4 (bloqueadas por BSS)</div></div>
+        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1950" target="_blank" rel="noopener">FPR-1950</a> (post-Mundial) consumió capacity y retrasó subidas. Volumen del stream: 39 bugs creados / 198 historias cerradas (ratio 0.20) — concentrado en el squad MOYO (31 de los 39).</div></div>
+      </div>
+    </div>
+
+    <div class="eq-block t-cat">
+      <div class="eq-block-header"><span class="team-dot" style="background:var(--cyc)"></span><span class="eq-block-name">Catálogo y Contenidos</span></div>
+      <div class="qa-grid">
+        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a">Dependencia BE detectada tarde en agenda deportiva (<a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2025" target="_blank" rel="noopener">FPR-2025</a>)</div></div>
+        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a">Curva de aprendizaje por incorporación de KIRO + nueva metodología</div></div>
+        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a">DIP Legión (<a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2024" target="_blank" rel="noopener">FPR-2024</a>) rescopeado a "maqueta no productiva" — deja de ser entrega real</div></div>
+        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a">Volumen del stream: 43 bugs creados / 236 historias cerradas (ratio 0.18) — 50 de esos bugs son de regresión, la mayor concentración de los 4 streams con data.</div></div>
+      </div>
+    </div>
+
+    <div class="eq-block t-dispo">
+      <div class="eq-block-header"><span class="team-dot" style="background:var(--dispo)"></span><span class="eq-block-name">Dispositivos</span></div>
+      <div class="qa-grid">
+        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a empty">-</div></div>
+        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a">Bugs en plataforma Skyworth, requieren coordinación con proveedor</div></div>
+        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a">Escenarios de prueba achicados para priorizar principales</div></div>
+        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a">Bugs Skyworth extendieron <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1997" target="_blank" rel="noopener">FPR-1997</a>; priorización TMA redujo capacity. Sin data de volumen de bugs a nivel squad para este stream.</div></div>
+      </div>
+    </div>
+
+    <div class="eq-block t-pb">
+      <div class="eq-block-header"><span class="team-dot" style="background:var(--pb)"></span><span class="eq-block-name">Playback</span></div>
+      <div class="qa-grid">
+        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a>: bug post-despliegue no detectado a tiempo por ambientes ocupados. <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1850" target="_blank" rel="noopener">FPR-1850</a>: dependencia con desarrollos de proveedores (Arris/Sagem) forzó recorte de alcance</div></div>
+        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2039" target="_blank" rel="noopener">FPR-2039</a>: dependencia con otros equipos no contemplada + extensión del plan de despliegue CDN</div></div>
+        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2039" target="_blank" rel="noopener">FPR-2039</a> se baja del todo; <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2042" target="_blank" rel="noopener">FPR-2042</a> se baja por capacidad; alcance redefinido en <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1850" target="_blank" rel="noopener">FPR-1850</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2033" target="_blank" rel="noopener">FPR-2033</a>, <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2037" target="_blank" rel="noopener">FPR-2037</a>; <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2034" target="_blank" rel="noopener">FPR-2034</a> en revisión por capacidad</div></div>
+        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a"><a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a>: los 82 días de desvío son consecuencia directa de un bug post-Mundial no detectado a tiempo — causa raíz más clara que en el resto de los equipos. Volumen del stream: 26 bugs creados / 199 historias cerradas (ratio 0.13) — el squad PLBATV en 0.42, 4 a 14x sus squads hermanos.</div></div>
+      </div>
+      <p class="eq-note">⚠️ <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1944" target="_blank" rel="noopener">FPR-1944</a> — 19 días de atraso y ya lleva <strong>3 replanificaciones</strong>. Patrón de riesgo aparte de <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-1844" target="_blank" rel="noopener">FPR-1844</a>, no es solo un atraso puntual.</p>
+    </div>
+
+    <div class="eq-block t-core">
+      <div class="eq-block-header"><span class="team-dot" style="background:var(--core)"></span><span class="eq-block-name">Core</span></div>
+      <div class="qa-grid">
+        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a empty">-</div></div>
+        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a">Por la naturaleza de Core (sector de servicio y soporte), surgen varias cosas no planificadas — se están consolidando en <a class="fpr" href="https://tecocloud.atlassian.net/browse/FPR-2083" target="_blank" rel="noopener">FPR-2083</a> (creación de perfiles, adecuación para contenido no contratado, Tendencias web, entre otras).</div></div>
+        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a empty">-</div></div>
+        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a empty">-</div></div>
+      </div>
+    </div>
+
+    <div class="eq-block t-host">
+      <div class="eq-block-header"><span class="team-dot" style="background:var(--host)"></span><span class="eq-block-name">Host</span></div>
+      <div class="qa-grid">
+        <div class="qa-item"><div class="qa-q">🆕 Nuevo</div><div class="qa-a">Bugs del refactor de splash en ATV (cerrado el Q pasado) que se fueron encontrando durante las salidas progresivas</div></div>
+        <div class="qa-item"><div class="qa-q">🎯 No previmos</div><div class="qa-a empty">-</div></div>
+        <div class="qa-item"><div class="qa-q">✂️ Repriorizamos</div><div class="qa-a">Nada — no hay iniciativas bajadas</div></div>
+        <div class="qa-item"><div class="qa-q">🐛 Bugs</div><div class="qa-a">Los bugs del refactor de splash ATV atrasaron un poco el avance. Volumen del stream: 14 bugs creados / 84 historias cerradas (ratio 0.17).</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prioridad">
+    <div class="section-header"><span class="section-num">05</span><h2>Nota — prioridades</h2></div>
+    <div class="insight">
+      <span class="insight-icon">💡</span>
+      <div>76% del backlog de Q3 está en P0/P1 (solo 2 iniciativas en P3, 0 en P4) — poca diferenciación real de prioridad. Core es el caso más marcado (64% de su backlog en P0) y a la vez el que menos volumen entregó en M1.</div>
+    </div>
+  </section>
+
+  <section id="bugs">
+    <div class="section-header"><span class="section-num">06</span><h2>Bugs y regresión por stream</h2></div>
+    <p class="section-sub">Los bugs no viven dentro del FPR, así que este consumo de capacity no aparece en las tablas de arriba. Data del Δt del Q por squad, agregada a nivel stream.</p>
+    <table class="table">
+      <thead><tr>
+        <th>Stream</th><th class="num">Bugs creados</th><th class="num">Historias cerradas</th><th class="num">Bugs regresión</th><th class="num">Bugs productivos</th><th class="num">Ratio bug/ticket</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><span class="stream-name"><span class="team-dot" style="background:var(--cyc)"></span>Catálogo y Contenidos <span style="color:var(--text-muted);font-family:var(--mono);font-size:11px">(NSF1+FCAT)</span></span></td><td class="num">43</td><td class="num">236</td><td class="num"><span class="pill pill-red">50</span></td><td class="num">56</td><td class="num">0.18</td></tr>
+        <tr><td><span class="stream-name"><span class="team-dot" style="background:var(--oyo)"></span>OYO <span style="color:var(--text-muted);font-family:var(--mono);font-size:11px">(WOYO+BOYO+MOYO)</span></span></td><td class="num">39</td><td class="num">198</td><td class="num">4</td><td class="num">22</td><td class="num">0.20</td></tr>
+        <tr><td><span class="stream-name"><span class="team-dot" style="background:var(--pb)"></span>Playback <span style="color:var(--text-muted);font-family:var(--mono);font-size:11px">(PLBAND+PLBATV+PLBIOS+PWYS)</span></span></td><td class="num">26</td><td class="num">199</td><td class="num">6</td><td class="num">34</td><td class="num">0.13</td></tr>
+        <tr><td><span class="stream-name"><span class="team-dot" style="background:var(--host)"></span>Host <span style="color:var(--text-muted);font-family:var(--mono);font-size:11px">(HOSTM+HOSTW)</span></span></td><td class="num">14</td><td class="num">84</td><td class="num">4</td><td class="num">11</td><td class="num">0.17</td></tr>
+      </tbody>
+    </table>
+    <p class="section-sub" style="margin-top:14px">Catálogo (FCAT) concentra prácticamente toda la regresión del Q3 — 50 de ~64 bugs de regresión totales entre los 4 streams con data. Dentro de OYO, el squad MOYO concentra 31 de los 39 bugs del stream (ratio 0.30 vs 0.08-0.09 de WOYO/BOYO). Dentro de Playback, PLBATV tiene ratio 0.42 — 4 a 14 veces más que sus squads hermanos.</p>
+    <p class="section-sub">Sin data de squads para Core ni Dispositivos en esta vista — a confirmar si no cargan bugs acá o si faltan en la tabla origen.</p>
+  </section>
+
+</main>
+
+</body>
+</html>
