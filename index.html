@@ -456,7 +456,7 @@
         </div>
         <div class="qa-item">
           <div class="qa-q">🐛 Bugs</div>
-          <div class="qa-a">Es el stream con más regresión del Q: de los ~64 bugs de regresión detectados entre todos los streams con data, 50 salieron de acá — sobre 43 bugs creados y 236 historias cerradas.</div>
+          <div class="qa-a">Alta carga de bugs de regresión (50) sobre 236 historias cerradas y 43 bugs creados. De esos 50, ~29-30 provienen de un refactor de arquitectura a Compose hecho por el Chapter Android (no desarrollado por el stream), acordado a nivel de liderazgo para trackearse dentro de Catálogo por tratarse de su experiencia. Ver nota* en la sección de bugs por stream.</div>
         </div>
       </div>
     </div>
@@ -653,14 +653,13 @@
         <th>Stream</th><th class="num">Bugs creados</th><th class="num">Historias cerradas</th><th class="num">Bugs regresión</th><th class="num">Bugs productivos</th><th class="num">Ratio bug/ticket</th>
       </tr></thead>
       <tbody>
-        <tr><td><span class="stream-name"><span class="team-dot" style="background:var(--cyc)"></span>Catálogo y Contenidos <span style="color:var(--text-muted);font-family:var(--mono);font-size:11px">(NSF1+FCAT)</span></span></td><td class="num">43</td><td class="num">236</td><td class="num"><span class="pill pill-red">50</span></td><td class="num">56</td><td class="num">0.18</td></tr>
+        <tr><td><span class="stream-name"><span class="team-dot" style="background:var(--cyc)"></span>Catálogo y Contenidos <span style="color:var(--text-muted);font-family:var(--mono);font-size:11px">(NSF1+FCAT)</span></span></td><td class="num">43</td><td class="num">236</td><td class="num"><span class="pill pill-gray">50*</span></td><td class="num">56</td><td class="num">0.18</td></tr>
         <tr><td><span class="stream-name"><span class="team-dot" style="background:var(--oyo)"></span>OYO <span style="color:var(--text-muted);font-family:var(--mono);font-size:11px">(WOYO+BOYO+MOYO)</span></span></td><td class="num">39</td><td class="num">198</td><td class="num">4</td><td class="num">22</td><td class="num">0.20</td></tr>
         <tr><td><span class="stream-name"><span class="team-dot" style="background:var(--pb)"></span>Playback <span style="color:var(--text-muted);font-family:var(--mono);font-size:11px">(PLBAND+PLBATV+PLBIOS+PWYS)</span></span></td><td class="num">26</td><td class="num">199</td><td class="num">6</td><td class="num">34</td><td class="num">0.13</td></tr>
         <tr><td><span class="stream-name"><span class="team-dot" style="background:var(--host)"></span>Host <span style="color:var(--text-muted);font-family:var(--mono);font-size:11px">(HOSTM+HOSTW)</span></span></td><td class="num">14</td><td class="num">84</td><td class="num">4</td><td class="num">11</td><td class="num">0.17</td></tr>
       </tbody>
     </table>
-    <p class="section-sub" style="margin-top:14px">Catálogo (FCAT) concentra prácticamente toda la regresión del Q3 — 50 de ~64 bugs de regresión totales entre los 4 streams con data. Dentro de OYO, el squad MOYO concentra 31 de los 39 bugs del stream (ratio 0.30 vs 0.08-0.09 de WOYO/BOYO). Dentro de Playback, PLBATV tiene ratio 0.42 — 4 a 14 veces más que sus squads hermanos.</p>
-    <p class="section-sub">Sin data de squads para Core ni Dispositivos en esta vista — a confirmar si no cargan bugs acá o si faltan en la tabla origen.</p>
+    <p class="section-sub" style="margin-top:14px">* De los 50 bugs de regresión cargados en Catálogo, aproximadamente 29-30 provienen del refactor de arquitectura a Compose (Chapter Android), un trabajo transversal de evolución técnica y performance que no fue desarrollado por el stream Catálogo. Se acordó a nivel de liderazgo trackear esa regresión dentro de Catálogo por tratarse de su experiencia. Los bugs críticos detectados ya fueron resueltos por el Chapter Android; el resto queda en backlog según prioridad — la mayoría son de baja severidad.</p>
   </section>
 
 </main>
